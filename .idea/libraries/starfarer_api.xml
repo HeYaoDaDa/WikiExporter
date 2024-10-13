@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="starfarer.api">
+    <CLASSES>
+      <root url="jar:///opt/starsector_097_zh/starfarer.api.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar:///opt/starsector_097_zh/starfarer.api.zip!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -1,0 +1,16 @@
+{
+  "id": "exporter",
+  "name": "WikiExporter",
+  "author": "HeYaoDaDa",
+  "version": {
+    "major": "1",
+    "minor": "0",
+    "patch": "0"
+  },
+  "description": "export wiki json.",
+  "gameVersion": "0.97a-RC11",
+  "jars": [
+    "jars/WikiExporter.jar"
+  ],
+  "modPlugin": "exporter.WikiExporterModPlugin"
+}

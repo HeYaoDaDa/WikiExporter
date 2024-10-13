@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="WikiExporter:jar">
+    <output-path>$PROJECT_DIR$/jars</output-path>
+    <root id="archive" name="WikiExporter.jar">
+      <element id="module-output" name="WikiExporter" />
+    </root>
+  </artifact>
+</component>
