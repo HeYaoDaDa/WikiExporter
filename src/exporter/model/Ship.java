@@ -44,7 +44,7 @@ public class Ship {
 
     private List<String> builtInMods;
     private HashMap<String, String> builtInWeapons;
-    private List<WeaponSlotAPI> allWeaponSlots;
+    private List<WeaponSlot> allWeaponSlots;
 
     private int fleetPoints;
     private double baseValue;
@@ -313,11 +313,11 @@ public class Ship {
         this.builtInWeapons = builtInWeapons;
     }
 
-    public List<WeaponSlotAPI> getAllWeaponSlots() {
+    public List<WeaponSlot> getAllWeaponSlots() {
         return allWeaponSlots;
     }
 
-    public void setAllWeaponSlots(List<WeaponSlotAPI> allWeaponSlots) {
+    public void setAllWeaponSlots(List<WeaponSlot> allWeaponSlots) {
         this.allWeaponSlots = allWeaponSlots;
     }
 

@@ -3,7 +3,9 @@ package exporter.converter;
 import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.combat.ShieldAPI;
 import com.fs.starfarer.api.combat.ShipHullSpecAPI;
+import com.fs.starfarer.api.loading.WeaponSlotAPI;
 import exporter.model.Ship;
+import exporter.model.WeaponSlot;
 import exporter.utils.JsonUtils;
 import org.apache.log4j.Logger;
 import org.json.JSONArray;
@@ -11,7 +13,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ShipConverter {
@@ -76,7 +80,11 @@ public class ShipConverter {
 
         ship.setBuiltInMods(api.getBuiltInMods());
         ship.setBuiltInWeapons(api.getBuiltInWeapons());
-        ship.setAllWeaponSlots(api.getAllWeaponSlotsCopy());
+        List<WeaponSlot> weaponSlots = new ArrayList<>();
+        for (WeaponSlotAPI weaponSlotAPI : api.getAllWeaponSlotsCopy()) {
+            weaponSlots.add(new WeaponSlot(weaponSlotAPI));
+        }
+        ship.setAllWeaponSlots(weaponSlots);
 
         ship.setFleetPoints(api.getFleetPoints());
         ship.setBaseValue(api.getBaseValue());
