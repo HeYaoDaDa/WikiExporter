@@ -11,9 +11,9 @@ public class Ship {
     private String designation;
     private String descriptionPrefix;
     private String descriptionContent;
-    private String description;
     private String sprite;
 
+    private String baseHullId;
     private String size;
     private double crToDeploy;
     private double repairPercentPerDay;
@@ -89,20 +89,20 @@ public class Ship {
         this.descriptionContent = descriptionContent;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public String getSprite() {
         return sprite;
     }
 
     public void setSprite(String sprite) {
         this.sprite = sprite;
+    }
+
+    public String getBaseHullId() {
+        return baseHullId;
+    }
+
+    public void setBaseHullId(String baseHullId) {
+        this.baseHullId = baseHullId;
     }
 
     public String getSize() {

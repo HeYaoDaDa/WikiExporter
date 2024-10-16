@@ -3,6 +3,7 @@ package exporter.converter;
 import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.combat.ShieldAPI;
 import com.fs.starfarer.api.combat.ShipHullSpecAPI;
+import com.fs.starfarer.api.loading.Description;
 import com.fs.starfarer.api.loading.WeaponSlotAPI;
 import exporter.model.Ship;
 import exporter.model.WeaponSlot;
@@ -34,8 +35,12 @@ public class ShipConverter {
     }
 
     public Ship convert(ShipHullSpecAPI api) throws JSONException {
-        String id = api.getBaseHullId();
+        String id = api.getHullId();
+        String baseId = api.getBaseHullId();
         JSONObject csvObject = csvObjectMap.get(id);
+        if (csvObject == null) {
+            csvObject = csvObjectMap.get(baseId);
+        }
 
         Ship ship = new Ship();
 
@@ -43,9 +48,27 @@ public class ShipConverter {
         ship.setName(api.getHullName());
         ship.setDesignation(api.getDesignation());
         ship.setDescriptionPrefix(api.getDescriptionPrefix());
-        ship.setDescriptionContent(api.getDescriptionId());
+        StringBuilder stringBuilder = new StringBuilder();
+        Description description = Global.getSettings().getDescription(api.getDescriptionId(), Description.Type.SHIP);
+        if (description.hasText1()) {
+            stringBuilder.append(description.getText1());
+        }
+        if (description.hasText2()) {
+            stringBuilder.append("\n");
+            stringBuilder.append(description.getText2());
+        }
+        if (description.hasText3()) {
+            stringBuilder.append("\n");
+            stringBuilder.append(description.getText3());
+        }
+        if (description.hasText4()) {
+            stringBuilder.append("\n");
+            stringBuilder.append(description.getText4());
+        }
+        ship.setDescriptionContent(stringBuilder.toString());
         ship.setSprite(api.getSpriteName());
 
+        ship.setBaseHullId(baseId);
         ship.setSize(api.getHullSize().name());
         ship.setCrToDeploy(api.getCRToDeploy());
         ship.setRepairPercentPerDay(JsonUtils.getDouble(csvObject, "cr %/day", 0));
