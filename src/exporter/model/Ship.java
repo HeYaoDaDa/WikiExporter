@@ -1,7 +1,5 @@
 package exporter.model;
 
-import com.fs.starfarer.api.loading.WeaponSlotAPI;
-
 import java.util.HashMap;
 import java.util.List;
 
@@ -28,12 +26,17 @@ public class Ship {
     private double fuel;
     private double maxBurn;
     private double fuelPerLY;
+    private int sensorProfile;
+    private int sensorStrength;
 
     private double hitPoints;
     private double armorRating;
     private String shieldType;
     private double shieldRadius;
     private double shieldCost;
+    private double fluxPerDamageAbsorbed;
+    private double phaseCost;
+    private double phaseUpKeep;
     private boolean phased;
     private double fluxCapacity;
     private double fluxDissipation;
@@ -209,6 +212,22 @@ public class Ship {
         this.fuelPerLY = fuelPerLY;
     }
 
+    public int getSensorProfile() {
+        return sensorProfile;
+    }
+
+    public void setSensorProfile(int sensorProfile) {
+        this.sensorProfile = sensorProfile;
+    }
+
+    public int getSensorStrength() {
+        return sensorStrength;
+    }
+
+    public void setSensorStrength(int sensorStrength) {
+        this.sensorStrength = sensorStrength;
+    }
+
     public double getHitPoints() {
         return hitPoints;
     }
@@ -247,6 +266,30 @@ public class Ship {
 
     public void setShieldCost(double shieldCost) {
         this.shieldCost = shieldCost;
+    }
+
+    public double getFluxPerDamageAbsorbed() {
+        return fluxPerDamageAbsorbed;
+    }
+
+    public void setFluxPerDamageAbsorbed(double fluxPerDamageAbsorbed) {
+        this.fluxPerDamageAbsorbed = fluxPerDamageAbsorbed;
+    }
+
+    public double getPhaseCost() {
+        return phaseCost;
+    }
+
+    public void setPhaseCost(double phaseCost) {
+        this.phaseCost = phaseCost;
+    }
+
+    public double getPhaseUpKeep() {
+        return phaseUpKeep;
+    }
+
+    public void setPhaseUpKeep(double phaseUpKeep) {
+        this.phaseUpKeep = phaseUpKeep;
     }
 
     public boolean isPhased() {

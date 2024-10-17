@@ -1,46 +1,32 @@
 package exporter.converter;
 
 import com.fs.starfarer.api.Global;
-import com.fs.starfarer.api.combat.ShieldAPI;
-import com.fs.starfarer.api.combat.ShipHullSpecAPI;
+import com.fs.starfarer.api.SettingsAPI;
+import com.fs.starfarer.api.characters.PersonAPI;
+import com.fs.starfarer.api.combat.*;
 import com.fs.starfarer.api.loading.Description;
 import com.fs.starfarer.api.loading.WeaponSlotAPI;
 import exporter.model.Ship;
 import exporter.model.WeaponSlot;
-import exporter.utils.JsonUtils;
 import org.apache.log4j.Logger;
-import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class ShipConverter {
     private static final Logger logger = Global.getLogger(ShipConverter.class);
-    private final Map<String, JSONObject> csvObjectMap = new HashMap<>();
-
-    public ShipConverter() throws JSONException, IOException {
-        JSONArray csvArray = Global.getSettings().loadCSV("data/hulls/ship_data.csv", true);
-        for (int i = 0; i < csvArray.length(); i++) {
-            JSONObject csvObject = csvArray.getJSONObject(i);
-            String id = csvObject.getString("id");
-            if (id != null && !id.isEmpty()) {
-                this.csvObjectMap.put(id, csvObject);
-            }
-        }
-    }
 
     public Ship convert(ShipHullSpecAPI api) throws JSONException {
+        SettingsAPI settings = Global.getSettings();
+        CombatEngineAPI combatEngine = Global.getCombatEngine();
+        PersonAPI captain = combatEngine.getPlayerShip().getCaptain();
         String id = api.getHullId();
         String baseId = api.getBaseHullId();
-        JSONObject csvObject = csvObjectMap.get(id);
-        if (csvObject == null) {
-            csvObject = csvObjectMap.get(baseId);
-        }
+        String emptyVariantId = id + "_wiki_exporter_variant";
+        ShipVariantAPI emptyVariant = settings.createEmptyVariant(emptyVariantId, api);
+        ShipAPI shipAPI = combatEngine.createFXDrone(emptyVariant);
+        MutableShipStatsAPI mutableShipStatsAPI = shipAPI.getMutableStats();
 
         Ship ship = new Ship();
 
@@ -49,7 +35,7 @@ public class ShipConverter {
         ship.setDesignation(api.getDesignation());
         ship.setDescriptionPrefix(api.getDescriptionPrefix());
         StringBuilder stringBuilder = new StringBuilder();
-        Description description = Global.getSettings().getDescription(api.getDescriptionId(), Description.Type.SHIP);
+        Description description = settings.getDescription(api.getDescriptionId(), Description.Type.SHIP);
         if (description.hasText1()) {
             stringBuilder.append(description.getText1());
         }
@@ -71,35 +57,37 @@ public class ShipConverter {
         ship.setBaseHullId(baseId);
         ship.setSize(api.getHullSize().name());
         ship.setCrToDeploy(api.getCRToDeploy());
-        ship.setRepairPercentPerDay(JsonUtils.getDouble(csvObject, "cr %/day", 0));
+        ship.setRepairPercentPerDay(mutableShipStatsAPI.getBaseCRRecoveryRatePercentPerDay().getFlatMod());
         ship.setSuppliesToRecover(api.getSuppliesToRecover());
         ship.setNoCRLossSeconds(api.getNoCRLossSeconds());
-        ship.setOrdnancePoints(JsonUtils.getInt(csvObject, "ordnance points", 0));
+        ship.setOrdnancePoints(api.getOrdnancePoints(captain.getStats()));
 
         ship.setSuppliesPerMonth(api.getSuppliesPerMonth());
         ship.setCargo(api.getCargo());
         ship.setMaxCrew(api.getMaxCrew());
         ship.setMinCrew(api.getMinCrew());
         ship.setFuel(api.getFuel());
-        ship.setMaxBurn(JsonUtils.getInt(csvObject, "max burn", 0));
+        ship.setMaxBurn(mutableShipStatsAPI.getMaxBurnLevel().getModifiedInt());
         ship.setFuelPerLY(api.getFuelPerLY());
+        ship.setSensorProfile(mutableShipStatsAPI.getSensorProfile().getModifiedInt());
+        ship.setSensorStrength(mutableShipStatsAPI.getSensorStrength().getModifiedInt());
 
         ship.setHitPoints(api.getHitpoints());
         ship.setArmorRating(api.getArmorRating());
         ship.setShieldType(api.getShieldType().name());
-        //TODO phase
-        if (ShieldAPI.ShieldType.OMNI.equals(api.getShieldType()) || ShieldAPI.ShieldType.FRONT.equals(api.getShieldType())) {
-            ShipHullSpecAPI.ShieldSpecAPI shieldSpec = api.getShieldSpec();
-            ship.setShieldRadius(shieldSpec.getRadius());
-            ship.setShieldCost(shieldSpec.getUpkeepCost());
-        }
+        ShipHullSpecAPI.ShieldSpecAPI shieldSpec = api.getShieldSpec();
+        ship.setShieldRadius(shieldSpec.getRadius());
+        ship.setShieldCost(shieldSpec.getUpkeepCost());
+        ship.setFluxPerDamageAbsorbed(shieldSpec.getFluxPerDamageAbsorbed());
+        ship.setPhaseCost(shieldSpec.getPhaseCost());
+        ship.setPhaseUpKeep(shieldSpec.getPhaseUpkeep());
         ship.setPhased(api.isPhase());
         ship.setFluxCapacity(api.getFluxCapacity());
         ship.setFluxDissipation(api.getFluxDissipation());
         ship.setMaxSpeed(api.getEngineSpec().getMaxSpeed());
 
-        ship.setShipSystemId(ship.getShipSystemId());
-        ship.setShipDefenseId(ship.getShipDefenseId());
+        ship.setShipSystemId(api.getShipSystemId());
+        ship.setShipDefenseId(api.getShipDefenseId());
 
         ship.setBuiltInMods(api.getBuiltInMods());
         ship.setBuiltInWeapons(api.getBuiltInWeapons());
