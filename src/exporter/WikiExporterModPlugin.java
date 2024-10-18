@@ -9,6 +9,8 @@ import com.fs.starfarer.api.combat.ShipVariantAPI;
 import com.fs.starfarer.api.loading.HullModSpecAPI;
 import com.fs.starfarer.api.loading.WeaponSpecAPI;
 import exporter.converter.*;
+import exporter.model.Ship;
+import exporter.model.ShipVariant;
 import org.apache.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -54,7 +56,10 @@ public class WikiExporterModPlugin extends BaseModPlugin {
             ShipConverter shipConverter = new ShipConverter();
             JSONArray shipJSONArray = new JSONArray();
             for (ShipHullSpecAPI shipHullSpecAPI : settings.getAllShipHullSpecs()) {
-                shipJSONArray.put(new JSONObject(shipConverter.convert(shipHullSpecAPI)));
+                Ship ship = shipConverter.convert(shipHullSpecAPI);
+                if (ship != null) {
+                    shipJSONArray.put(new JSONObject(ship));
+                }
             }
             logger.info("export_ships_export_" + shipJSONArray);
 
@@ -62,7 +67,10 @@ public class WikiExporterModPlugin extends BaseModPlugin {
             JSONArray shipVariantJsonArray = new JSONArray();
             for (String variantId : settings.getAllVariantIds()) {
                 ShipVariantAPI variant = settings.getVariant(variantId);
-                shipVariantJsonArray.put(new JSONObject(shipVariantConverter.convert(variant)));
+                ShipVariant shipVariant = shipVariantConverter.convert(variant);
+                if (shipVariant != null) {
+                    shipVariantJsonArray.put(new JSONObject(shipVariant));
+                }
             }
             logger.info("export_ship_variants_export_" + shipVariantJsonArray);
         } catch (JSONException | IOException e) {

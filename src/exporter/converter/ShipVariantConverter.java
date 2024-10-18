@@ -8,6 +8,10 @@ import java.util.*;
 
 public class ShipVariantConverter {
     public ShipVariant convert(ShipVariantAPI api) {
+        if (api.isDHull()) {
+            return null;
+        }
+
         ShipVariant shipVariant = new ShipVariant();
         String id = api.getHullVariantId();
 
@@ -38,7 +42,6 @@ public class ShipVariantConverter {
 
         shipVariant.setGoalVariant(api.isGoalVariant());
         shipVariant.setFighter(api.isFighter());
-        shipVariant.setdHull(api.isDHull());
         shipVariant.setStation(api.isStation());
         shipVariant.setCivilian(api.isCivilian());
         shipVariant.setCombat(api.isCombat());

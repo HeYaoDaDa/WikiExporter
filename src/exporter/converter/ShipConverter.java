@@ -18,6 +18,10 @@ public class ShipConverter {
     private static final Logger logger = Global.getLogger(ShipConverter.class);
 
     public Ship convert(ShipHullSpecAPI api) throws JSONException {
+        if (api.isDHull()) {
+            return null;
+        }
+
         SettingsAPI settings = Global.getSettings();
         CombatEngineAPI combatEngine = Global.getCombatEngine();
         PersonAPI captain = combatEngine.getPlayerShip().getCaptain();

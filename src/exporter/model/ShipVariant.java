@@ -25,7 +25,6 @@ public class ShipVariant {
 
     private boolean goalVariant;
     private boolean fighter;
-    private boolean dHull;
     private boolean station;
     private boolean civilian;
     private boolean combat;
@@ -145,14 +144,6 @@ public class ShipVariant {
 
     public void setFighter(boolean fighter) {
         this.fighter = fighter;
-    }
-
-    public boolean isdHull() {
-        return dHull;
-    }
-
-    public void setdHull(boolean dHull) {
-        this.dHull = dHull;
     }
 
     public boolean isStation() {
