@@ -136,7 +136,8 @@ public class ShipConverter {
         }
         ship.setWeaponIdMap(weaponIdMap);
 
-        ArrayList<String> builtInMods = new ArrayList<>(variantAPI.getPermaMods());
+        List<String> builtInMods = hullApi.getBuiltInMods();
+        builtInMods.addAll(new ArrayList<>(variantAPI.getPermaMods()));
         builtInMods.removeAll(variantAPI.getSMods());
         ship.setBuiltInMods(builtInMods);
         ship.setStoryMods(new ArrayList<>(variantAPI.getSMods()));
