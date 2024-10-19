@@ -6,34 +6,50 @@ import java.util.Set;
 
 public class Weapon {
     private String id;
+    private String jsonType;
     private String name;
     private String description;
+    //    原始数据部分下面的特别说明
     private String customPrimary;
+    //    炮塔贴图
     private String turretSprite;
+    //    固定槽位贴图
     private String hardPointSprite;
 
+    //    战术应用
     private String primaryRoleStr;
+    //    安装类型
     private String size;
     private String mountType;
+    //    部署点
     private double ordnancePoint;
 
+    //    武器射程
     private double maxRange;
+    //    伤害
     private double damagePerShot;
-    private double damagePerSecond;
+    //    爆发数量
+    private int burstSize;
+    //    伤害/秒
+    private double dps;
+    //    持续伤害DPS
+    private double sustainedDps;
+    //    EMP伤害
     private double empPerShot;
+    //    EMP伤害每秒
     private double empPerSecond;
 
+    //    幅能每秒
     private double fluxPerSecond;
+    //    持续幅能每秒
     private double sustainedFluxPerSecond;
-    private double dps;
-    private double sustainedDps;
+    //    幅能/non-EMP伤害
     private double fluxPerDamage;
 
     private String customAncillary;
     private DamageType damageType;
-    private boolean isSoftFlux;
     private String accuracyStr;
-    private double turnRate;
+    private String turnRateStr;
     private double reFireDelay;
 
     private Set<String> tags;
@@ -44,6 +60,14 @@ public class Weapon {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getJsonType() {
+        return jsonType;
+    }
+
+    public void setJsonType(String jsonType) {
+        this.jsonType = jsonType;
     }
 
     public String getName() {
@@ -134,12 +158,28 @@ public class Weapon {
         this.damagePerShot = damagePerShot;
     }
 
-    public double getDamagePerSecond() {
-        return damagePerSecond;
+    public int getBurstSize() {
+        return burstSize;
     }
 
-    public void setDamagePerSecond(double damagePerSecond) {
-        this.damagePerSecond = damagePerSecond;
+    public void setBurstSize(int burstSize) {
+        this.burstSize = burstSize;
+    }
+
+    public double getDps() {
+        return dps;
+    }
+
+    public void setDps(double dps) {
+        this.dps = dps;
+    }
+
+    public double getSustainedDps() {
+        return sustainedDps;
+    }
+
+    public void setSustainedDps(double sustainedDps) {
+        this.sustainedDps = sustainedDps;
     }
 
     public double getEmpPerShot() {
@@ -174,22 +214,6 @@ public class Weapon {
         this.sustainedFluxPerSecond = sustainedFluxPerSecond;
     }
 
-    public double getDps() {
-        return dps;
-    }
-
-    public void setDps(double dps) {
-        this.dps = dps;
-    }
-
-    public double getSustainedDps() {
-        return sustainedDps;
-    }
-
-    public void setSustainedDps(double sustainedDps) {
-        this.sustainedDps = sustainedDps;
-    }
-
     public double getFluxPerDamage() {
         return fluxPerDamage;
     }
@@ -214,14 +238,6 @@ public class Weapon {
         this.damageType = damageType;
     }
 
-    public boolean isSoftFlux() {
-        return isSoftFlux;
-    }
-
-    public void setSoftFlux(boolean softFlux) {
-        isSoftFlux = softFlux;
-    }
-
     public String getAccuracyStr() {
         return accuracyStr;
     }
@@ -230,12 +246,12 @@ public class Weapon {
         this.accuracyStr = accuracyStr;
     }
 
-    public double getTurnRate() {
-        return turnRate;
+    public String getTurnRateStr() {
+        return turnRateStr;
     }
 
-    public void setTurnRate(double turnRate) {
-        this.turnRate = turnRate;
+    public void setTurnRateStr(String turnRateStr) {
+        this.turnRateStr = turnRateStr;
     }
 
     public double getReFireDelay() {

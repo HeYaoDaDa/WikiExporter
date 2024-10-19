@@ -4,6 +4,7 @@ import java.util.Set;
 
 public class ShipMod {
     private String id;
+    private String jsonType;
     private String name;
     private String description;
     private String icon;
@@ -35,6 +36,14 @@ public class ShipMod {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getJsonType() {
+        return jsonType;
+    }
+
+    public void setJsonType(String jsonType) {
+        this.jsonType = jsonType;
     }
 
     public String getName() {

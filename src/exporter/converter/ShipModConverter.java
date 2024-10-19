@@ -23,6 +23,7 @@ public class ShipModConverter {
 
         ShipMod shipMod = new ShipMod();
         shipMod.setId(id);
+        shipMod.setJsonType("SHIP_MOD");
         shipMod.setName(hullModSpecAPI.getDisplayName());
         shipMod.setIcon(hullModSpecAPI.getSpriteName());
 
