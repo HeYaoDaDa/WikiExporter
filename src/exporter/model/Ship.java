@@ -57,9 +57,9 @@ public class Ship {
     //    防御方式
     private String shieldType;
     //    护盾角度
-    private MutableStat shieldRadius;
+    private MutableStat shieldArc;
     //    护盾维持(幅能/秒)
-    private MutableStat shieldCost;
+    private MutableStat shieldUpkeep;
     //    护盾效率(幅能/伤害)
     private MutableStat fluxPerDamageAbsorbed;
     //    相位线圈激活
@@ -346,20 +346,20 @@ public class Ship {
         this.shieldType = shieldType;
     }
 
-    public MutableStat getShieldRadius() {
-        return shieldRadius;
+    public MutableStat getShieldArc() {
+        return shieldArc;
     }
 
-    public void setShieldRadius(MutableStat shieldRadius) {
-        this.shieldRadius = shieldRadius;
+    public void setShieldArc(MutableStat shieldArc) {
+        this.shieldArc = shieldArc;
     }
 
-    public MutableStat getShieldCost() {
-        return shieldCost;
+    public MutableStat getShieldUpkeep() {
+        return shieldUpkeep;
     }
 
-    public void setShieldCost(MutableStat shieldCost) {
-        this.shieldCost = shieldCost;
+    public void setShieldUpkeep(MutableStat shieldUpkeep) {
+        this.shieldUpkeep = shieldUpkeep;
     }
 
     public MutableStat getFluxPerDamageAbsorbed() {

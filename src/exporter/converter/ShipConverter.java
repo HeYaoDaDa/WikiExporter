@@ -93,9 +93,13 @@ public class ShipConverter {
         ship.setArmorRating(new MutableStat(hullApi.getArmorRating(), shipStatsAPI.getArmorBonus()));
         ship.setShieldType(hullApi.getShieldType().name());
         ShipHullSpecAPI.ShieldSpecAPI shieldSpec = hullApi.getShieldSpec();
-        ship.setShieldRadius(new MutableStat(shieldSpec.getRadius(), shipStatsAPI.getShieldArcBonus()));
-        ship.setShieldCost(new MutableStat(shipStatsAPI.getShieldUpkeepMult()));
-        ship.setFluxPerDamageAbsorbed(new MutableStat(shipStatsAPI.getShieldDamageTakenMult()));
+        ship.setShieldArc(new MutableStat(shieldSpec.getArc(), shipStatsAPI.getShieldArcBonus()));
+        com.fs.starfarer.api.combat.MutableStat shieldUpkeepMult = shipStatsAPI.getShieldUpkeepMult();
+        shieldUpkeepMult.setBaseValue(shieldSpec.getUpkeepCost());
+        ship.setShieldUpkeep(new MutableStat(shieldUpkeepMult));
+        com.fs.starfarer.api.combat.MutableStat shieldDamageTakenMult = shipStatsAPI.getShieldDamageTakenMult();
+        shieldDamageTakenMult.setBaseValue(shieldSpec.getFluxPerDamageAbsorbed());
+        ship.setFluxPerDamageAbsorbed(new MutableStat(shieldDamageTakenMult));
         ship.setPhaseCost(new MutableStat(shieldSpec.getPhaseCost(), shipStatsAPI.getPhaseCloakActivationCostBonus()));
         ship.setPhaseUpKeep(new MutableStat(shieldSpec.getPhaseUpkeep(), shipStatsAPI.getPhaseCloakUpkeepCostBonus()));
         ship.setFluxCapacity(new MutableStat(shipStatsAPI.getFluxCapacity()));
