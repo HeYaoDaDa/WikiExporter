@@ -5,6 +5,7 @@ import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.SettingsAPI;
 import com.fs.starfarer.api.combat.ShipSystemSpecAPI;
 import com.fs.starfarer.api.combat.ShipVariantAPI;
+import com.fs.starfarer.api.combat.WeaponAPI;
 import com.fs.starfarer.api.loading.HullModSpecAPI;
 import com.fs.starfarer.api.loading.WeaponSpecAPI;
 import exporter.converter.ShipConverter;
@@ -67,6 +68,11 @@ public class WikiExporterModPlugin extends BaseModPlugin {
             WeaponConverter weaponConverter = new WeaponConverter();
             for (WeaponSpecAPI weaponSpec : settings.getAllWeaponSpecs()) {
                 shipJSONArray.put(new JSONObject(weaponConverter.convert(weaponSpec)));
+            }
+            for (WeaponSpecAPI weaponSpec : settings.getSystemWeaponSpecs()) {
+                if (weaponSpec.getAIHints().contains(WeaponAPI.AIHints.SHOW_IN_CODEX)) {
+                    shipJSONArray.put(new JSONObject(weaponConverter.convert(weaponSpec)));
+                }
             }
         } catch (JSONException | IOException e) {
             throw new RuntimeException(e);

@@ -2,6 +2,7 @@ package exporter.model;
 
 import com.fs.starfarer.api.combat.DamageType;
 
+import java.util.List;
 import java.util.Set;
 
 public class Weapon {
@@ -13,8 +14,19 @@ public class Weapon {
     private String customPrimary;
     //    炮塔贴图
     private String turretSprite;
+    private String turretUnderSprite;
+    private String turretGunSprite;
+    private String turretGlowSprite;
     //    固定槽位贴图
     private String hardPointSprite;
+    private String hardPointUnderSprite;
+    private String hardPointGunSprite;
+    private String hardPointGlowSprite;
+    //    渲染用标签
+    private List<String> renderHints;
+    //    导弹位置
+    private List<Integer> turretOffsets;
+    private String projSpriteName;
 
     //    战术应用
     private String primaryRoleStr;
@@ -102,12 +114,84 @@ public class Weapon {
         this.turretSprite = turretSprite;
     }
 
+    public String getTurretUnderSprite() {
+        return turretUnderSprite;
+    }
+
+    public void setTurretUnderSprite(String turretUnderSprite) {
+        this.turretUnderSprite = turretUnderSprite;
+    }
+
+    public String getTurretGunSprite() {
+        return turretGunSprite;
+    }
+
+    public void setTurretGunSprite(String turretGunSprite) {
+        this.turretGunSprite = turretGunSprite;
+    }
+
+    public String getTurretGlowSprite() {
+        return turretGlowSprite;
+    }
+
+    public void setTurretGlowSprite(String turretGlowSprite) {
+        this.turretGlowSprite = turretGlowSprite;
+    }
+
     public String getHardPointSprite() {
         return hardPointSprite;
     }
 
     public void setHardPointSprite(String hardPointSprite) {
         this.hardPointSprite = hardPointSprite;
+    }
+
+    public String getHardPointUnderSprite() {
+        return hardPointUnderSprite;
+    }
+
+    public void setHardPointUnderSprite(String hardPointUnderSprite) {
+        this.hardPointUnderSprite = hardPointUnderSprite;
+    }
+
+    public String getHardPointGunSprite() {
+        return hardPointGunSprite;
+    }
+
+    public void setHardPointGunSprite(String hardPointGunSprite) {
+        this.hardPointGunSprite = hardPointGunSprite;
+    }
+
+    public String getHardPointGlowSprite() {
+        return hardPointGlowSprite;
+    }
+
+    public void setHardPointGlowSprite(String hardPointGlowSprite) {
+        this.hardPointGlowSprite = hardPointGlowSprite;
+    }
+
+    public List<String> getRenderHints() {
+        return renderHints;
+    }
+
+    public void setRenderHints(List<String> renderHints) {
+        this.renderHints = renderHints;
+    }
+
+    public List<Integer> getTurretOffsets() {
+        return turretOffsets;
+    }
+
+    public void setTurretOffsets(List<Integer> turretOffsets) {
+        this.turretOffsets = turretOffsets;
+    }
+
+    public String getProjSpriteName() {
+        return projSpriteName;
+    }
+
+    public void setProjSpriteName(String projSpriteName) {
+        this.projSpriteName = projSpriteName;
     }
 
     public String getPrimaryRoleStr() {
