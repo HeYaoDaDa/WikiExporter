@@ -9,10 +9,10 @@ public class ShipMod {
     private String description;
     private String icon;
 
-    private boolean isHaveSModEffect;
-    private boolean isAlwaysUnlocked;
-    private boolean isHidden;
-    private boolean isHiddenEverywhere;
+    private boolean haveSModEffect;
+    private boolean alwaysUnlocked;
+    private boolean hidden;
+    private boolean hiddenEverywhere;
 
     private int frigateCost;
     private int destroyerCost;
@@ -33,28 +33,36 @@ public class ShipMod {
     private Set<String> uiTags;
 
 
+    public boolean isHaveSModEffect() {
+        return haveSModEffect;
+    }
+
+    public void setHaveSModEffect(boolean haveSModEffect) {
+        this.haveSModEffect = haveSModEffect;
+    }
+
     public boolean isAlwaysUnlocked() {
-        return isAlwaysUnlocked;
+        return alwaysUnlocked;
     }
 
     public void setAlwaysUnlocked(boolean alwaysUnlocked) {
-        isAlwaysUnlocked = alwaysUnlocked;
+        this.alwaysUnlocked = alwaysUnlocked;
     }
 
     public boolean isHidden() {
-        return isHidden;
+        return hidden;
     }
 
     public void setHidden(boolean hidden) {
-        isHidden = hidden;
+        this.hidden = hidden;
     }
 
     public boolean isHiddenEverywhere() {
-        return isHiddenEverywhere;
+        return hiddenEverywhere;
     }
 
     public void setHiddenEverywhere(boolean hiddenEverywhere) {
-        isHiddenEverywhere = hiddenEverywhere;
+        this.hiddenEverywhere = hiddenEverywhere;
     }
 
     public String getId() {
@@ -97,13 +105,6 @@ public class ShipMod {
         this.icon = icon;
     }
 
-    public boolean isHaveSModEffect() {
-        return isHaveSModEffect;
-    }
-
-    public void setHaveSModEffect(boolean haveSModEffect) {
-        isHaveSModEffect = haveSModEffect;
-    }
 
     public int getFrigateCost() {
         return frigateCost;
