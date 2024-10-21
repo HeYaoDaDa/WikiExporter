@@ -10,6 +10,9 @@ public class ShipMod {
     private String icon;
 
     private boolean isHaveSModEffect;
+    private boolean isAlwaysUnlocked;
+    private boolean isHidden;
+    private boolean isHiddenEverywhere;
 
     private int frigateCost;
     private int destroyerCost;
@@ -29,6 +32,30 @@ public class ShipMod {
     private Set<String> tags;
     private Set<String> uiTags;
 
+
+    public boolean isAlwaysUnlocked() {
+        return isAlwaysUnlocked;
+    }
+
+    public void setAlwaysUnlocked(boolean alwaysUnlocked) {
+        isAlwaysUnlocked = alwaysUnlocked;
+    }
+
+    public boolean isHidden() {
+        return isHidden;
+    }
+
+    public void setHidden(boolean hidden) {
+        isHidden = hidden;
+    }
+
+    public boolean isHiddenEverywhere() {
+        return isHiddenEverywhere;
+    }
+
+    public void setHiddenEverywhere(boolean hiddenEverywhere) {
+        isHiddenEverywhere = hiddenEverywhere;
+    }
 
     public String getId() {
         return id;

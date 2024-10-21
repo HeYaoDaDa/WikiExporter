@@ -28,6 +28,9 @@ public class ShipModConverter {
         shipMod.setIcon(hullModSpecAPI.getSpriteName());
 
         shipMod.setHaveSModEffect(effect.isSModEffectAPenalty());
+        shipMod.setAlwaysUnlocked(hullModSpecAPI.isAlwaysUnlocked());
+        shipMod.setHidden(hullModSpecAPI.isHidden());//一般不可见
+        shipMod.setHiddenEverywhere(hullModSpecAPI.isHiddenEverywhere());//所有地方都不可见
 
         shipMod.setFrigateCost(hullModSpecAPI.getFrigateCost());
         shipMod.setDestroyerCost(hullModSpecAPI.getDestroyerCost());
