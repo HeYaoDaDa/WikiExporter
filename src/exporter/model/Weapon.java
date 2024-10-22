@@ -2,6 +2,7 @@ package exporter.model;
 
 import com.fs.starfarer.api.combat.DamageType;
 
+import java.util.List;
 import java.util.Set;
 
 public class Weapon {
@@ -13,8 +14,19 @@ public class Weapon {
     private String customPrimary;
     //    炮塔贴图
     private String turretSprite;
+    private String turretUnderSprite;
+    private String turretGunSprite;
+    private String turretGlowSprite;
     //    固定槽位贴图
     private String hardPointSprite;
+    private String hardPointUnderSprite;
+    private String hardPointGunSprite;
+    private String hardPointGlowSprite;
+    //    渲染用标签
+    private List<String> renderHints;
+    //    导弹位置
+    private List<Integer> turretOffsets;
+    private String projSpriteName;
 
     //    战术应用
     private String primaryRoleStr;
@@ -48,8 +60,21 @@ public class Weapon {
 
     private String customAncillary;
     private DamageType damageType;
+    //    导弹飞行速度
+    private String speedStr;
+    //    导弹追踪性能
+    private String trackingStr;
+    //    武器精准度
     private String accuracyStr;
+    //    武器转向速度
     private String turnRateStr;
+    //    最大充能数/最大备弹数
+    private Integer maxAmmo;
+    //    充能时间/装弹时间
+    private Integer reloadTime;
+    //    每次充能数/每次装弹数
+    private int reloadSize;
+    //    武器开火间隔
     private double reFireDelay;
 
     private Set<String> tags;
@@ -102,12 +127,84 @@ public class Weapon {
         this.turretSprite = turretSprite;
     }
 
+    public String getTurretUnderSprite() {
+        return turretUnderSprite;
+    }
+
+    public void setTurretUnderSprite(String turretUnderSprite) {
+        this.turretUnderSprite = turretUnderSprite;
+    }
+
+    public String getTurretGunSprite() {
+        return turretGunSprite;
+    }
+
+    public void setTurretGunSprite(String turretGunSprite) {
+        this.turretGunSprite = turretGunSprite;
+    }
+
+    public String getTurretGlowSprite() {
+        return turretGlowSprite;
+    }
+
+    public void setTurretGlowSprite(String turretGlowSprite) {
+        this.turretGlowSprite = turretGlowSprite;
+    }
+
     public String getHardPointSprite() {
         return hardPointSprite;
     }
 
     public void setHardPointSprite(String hardPointSprite) {
         this.hardPointSprite = hardPointSprite;
+    }
+
+    public String getHardPointUnderSprite() {
+        return hardPointUnderSprite;
+    }
+
+    public void setHardPointUnderSprite(String hardPointUnderSprite) {
+        this.hardPointUnderSprite = hardPointUnderSprite;
+    }
+
+    public String getHardPointGunSprite() {
+        return hardPointGunSprite;
+    }
+
+    public void setHardPointGunSprite(String hardPointGunSprite) {
+        this.hardPointGunSprite = hardPointGunSprite;
+    }
+
+    public String getHardPointGlowSprite() {
+        return hardPointGlowSprite;
+    }
+
+    public void setHardPointGlowSprite(String hardPointGlowSprite) {
+        this.hardPointGlowSprite = hardPointGlowSprite;
+    }
+
+    public List<String> getRenderHints() {
+        return renderHints;
+    }
+
+    public void setRenderHints(List<String> renderHints) {
+        this.renderHints = renderHints;
+    }
+
+    public List<Integer> getTurretOffsets() {
+        return turretOffsets;
+    }
+
+    public void setTurretOffsets(List<Integer> turretOffsets) {
+        this.turretOffsets = turretOffsets;
+    }
+
+    public String getProjSpriteName() {
+        return projSpriteName;
+    }
+
+    public void setProjSpriteName(String projSpriteName) {
+        this.projSpriteName = projSpriteName;
     }
 
     public String getPrimaryRoleStr() {
@@ -238,6 +335,22 @@ public class Weapon {
         this.damageType = damageType;
     }
 
+    public String getSpeedStr() {
+        return speedStr;
+    }
+
+    public void setSpeedStr(String speedStr) {
+        this.speedStr = speedStr;
+    }
+
+    public String getTrackingStr() {
+        return trackingStr;
+    }
+
+    public void setTrackingStr(String trackingStr) {
+        this.trackingStr = trackingStr;
+    }
+
     public String getAccuracyStr() {
         return accuracyStr;
     }
@@ -252,6 +365,30 @@ public class Weapon {
 
     public void setTurnRateStr(String turnRateStr) {
         this.turnRateStr = turnRateStr;
+    }
+
+    public Integer getMaxAmmo() {
+        return maxAmmo;
+    }
+
+    public void setMaxAmmo(Integer maxAmmo) {
+        this.maxAmmo = maxAmmo;
+    }
+
+    public Integer getReloadTime() {
+        return reloadTime;
+    }
+
+    public void setReloadTime(Integer reloadTime) {
+        this.reloadTime = reloadTime;
+    }
+
+    public int getReloadSize() {
+        return reloadSize;
+    }
+
+    public void setReloadSize(int reloadSize) {
+        this.reloadSize = reloadSize;
     }
 
     public double getReFireDelay() {

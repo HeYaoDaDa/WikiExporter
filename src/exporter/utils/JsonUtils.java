@@ -25,4 +25,16 @@ public class JsonUtils {
             return def;
         }
     }
+
+    public static String getString(JSONObject jsonObject, String field) throws JSONException {
+        return getString(jsonObject, field, null);
+    }
+
+    public static String getString(JSONObject jsonObject, String field, String def) throws JSONException {
+        if (jsonObject.has(field)) {
+            return jsonObject.getString(field);
+        } else {
+            return def;
+        }
+    }
 }
