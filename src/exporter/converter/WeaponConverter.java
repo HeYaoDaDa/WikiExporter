@@ -103,8 +103,8 @@ public class WeaponConverter {
         }
 
         weapon.setPrimaryRoleStr(weaponSpecAPI.getPrimaryRoleStr());
-        weapon.setSize(weaponSpecAPI.getSize().getDisplayName());
-        weapon.setMountType(weaponSpecAPI.getMountType().getDisplayName());
+        weapon.setSize(weaponSpecAPI.getSize().name());
+        weapon.setMountType(weaponSpecAPI.getMountType().name());
         weapon.setOrdnancePoint(JsonUtils.getDouble(csvObject, "OPs", 0));
 
         weapon.setMaxRange(weaponSpecAPI.getMaxRange());
