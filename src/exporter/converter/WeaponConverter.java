@@ -5,6 +5,7 @@ import com.fs.starfarer.api.SettingsAPI;
 import com.fs.starfarer.api.combat.ShipAPI;
 import com.fs.starfarer.api.combat.WeaponAPI;
 import com.fs.starfarer.api.loading.Description;
+import com.fs.starfarer.api.loading.ProjectileSpecAPI;
 import com.fs.starfarer.api.loading.WeaponSpecAPI;
 import exporter.model.Weapon;
 import exporter.utils.JsonUtils;
@@ -21,6 +22,11 @@ import java.util.Map;
 public class WeaponConverter {
     private final ShipAPI playerShip;
     private final Map<String, JSONObject> csvObjectMap = new HashMap<>();
+    private static final Map<String, String> projIdFileMap = new HashMap<>();
+
+    static {
+        projIdFileMap.put("locust", "locust_srm");
+    }
 
     public WeaponConverter() throws JSONException, IOException {
         this.playerShip = Global.getCombatEngine().getPlayerShip();
@@ -80,12 +86,25 @@ public class WeaponConverter {
             }
         }
         weapon.setTurretOffsets(offsets);
-//        TODO
-//        weapon.setProjSpriteName();
+        Object projectileSpec = weaponSpecAPI.getProjectileSpec();
+        if (projectileSpec instanceof ProjectileSpecAPI) {
+            ProjectileSpecAPI projectileSpecAPI = (ProjectileSpecAPI) projectileSpec;
+            weapon.setProjSpriteName(projectileSpecAPI.getBulletSpriteName());
+        } else {
+            String projId = JsonUtils.getString(jsonObject, "projectileSpecId");
+            if (projId != null) {
+                String projFile = projIdFileMap.get(projId);
+                if (projFile == null) {
+                    projFile = projId;
+                }
+                JSONObject projJson = settings.loadJSON("data/weapons/proj/" + projFile + ".proj", true);
+                weapon.setProjSpriteName(JsonUtils.getString(projJson, "sprite"));
+            }
+        }
 
         weapon.setPrimaryRoleStr(weaponSpecAPI.getPrimaryRoleStr());
-        weapon.setSize(weaponSpecAPI.getSize().getDisplayName());
-        weapon.setMountType(weaponSpecAPI.getMountType().getDisplayName());
+        weapon.setSize(weaponSpecAPI.getSize().name());
+        weapon.setMountType(weaponSpecAPI.getMountType().name());
         weapon.setOrdnancePoint(JsonUtils.getDouble(csvObject, "OPs", 0));
 
         weapon.setMaxRange(weaponSpecAPI.getMaxRange());
@@ -102,8 +121,15 @@ public class WeaponConverter {
 
         weapon.setCustomAncillary(weaponSpecAPI.getCustomAncillary());
         weapon.setDamageType(weaponSpecAPI.getDamageType());
+        weapon.setSpeedStr(weaponSpecAPI.getSpeedStr());
+        weapon.setTrackingStr(weaponSpecAPI.getTrackingStr());
         weapon.setAccuracyStr(weaponSpecAPI.getAccuracyStr());
         weapon.setTurnRateStr(weaponSpecAPI.getTurnRateStr());
+        weapon.setMaxAmmo(weaponSpecAPI.getMaxAmmo() == Integer.MAX_VALUE ? null : weaponSpecAPI.getMaxAmmo());
+        float ammoPerSec = weaponSpecAPI.getAmmoPerSecond();
+        int reloadSize = weaponSpecAPI.getReloadSize() >= 1 ? Math.round(weaponSpecAPI.getReloadSize()) : 1;
+        weapon.setReloadTime(ammoPerSec == 0 ? null : Math.round(reloadSize / ammoPerSec));
+        weapon.setReloadSize(reloadSize);
         weapon.setReFireDelay(fakeWeapon.getRefireDelay());
 
         weapon.setTags(weaponSpecAPI.getTags());
