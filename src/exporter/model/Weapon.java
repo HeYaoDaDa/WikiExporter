@@ -60,8 +60,21 @@ public class Weapon {
 
     private String customAncillary;
     private DamageType damageType;
+    //    导弹飞行速度
+    private String speedStr;
+    //    导弹追踪性能
+    private String trackingStr;
+    //    武器精准度
     private String accuracyStr;
+    //    武器转向速度
     private String turnRateStr;
+    //    最大充能数/最大备弹数
+    private Integer maxAmmo;
+    //    充能时间/装弹时间
+    private Integer reloadTime;
+    //    每次充能数/每次装弹数
+    private int reloadSize;
+    //    武器开火间隔
     private double reFireDelay;
 
     private Set<String> tags;
@@ -322,6 +335,22 @@ public class Weapon {
         this.damageType = damageType;
     }
 
+    public String getSpeedStr() {
+        return speedStr;
+    }
+
+    public void setSpeedStr(String speedStr) {
+        this.speedStr = speedStr;
+    }
+
+    public String getTrackingStr() {
+        return trackingStr;
+    }
+
+    public void setTrackingStr(String trackingStr) {
+        this.trackingStr = trackingStr;
+    }
+
     public String getAccuracyStr() {
         return accuracyStr;
     }
@@ -336,6 +365,30 @@ public class Weapon {
 
     public void setTurnRateStr(String turnRateStr) {
         this.turnRateStr = turnRateStr;
+    }
+
+    public Integer getMaxAmmo() {
+        return maxAmmo;
+    }
+
+    public void setMaxAmmo(Integer maxAmmo) {
+        this.maxAmmo = maxAmmo;
+    }
+
+    public Integer getReloadTime() {
+        return reloadTime;
+    }
+
+    public void setReloadTime(Integer reloadTime) {
+        this.reloadTime = reloadTime;
+    }
+
+    public int getReloadSize() {
+        return reloadSize;
+    }
+
+    public void setReloadSize(int reloadSize) {
+        this.reloadSize = reloadSize;
     }
 
     public double getReFireDelay() {

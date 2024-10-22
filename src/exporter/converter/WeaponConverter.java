@@ -121,8 +121,15 @@ public class WeaponConverter {
 
         weapon.setCustomAncillary(weaponSpecAPI.getCustomAncillary());
         weapon.setDamageType(weaponSpecAPI.getDamageType());
+        weapon.setSpeedStr(weaponSpecAPI.getSpeedStr());
+        weapon.setTrackingStr(weaponSpecAPI.getTrackingStr());
         weapon.setAccuracyStr(weaponSpecAPI.getAccuracyStr());
         weapon.setTurnRateStr(weaponSpecAPI.getTurnRateStr());
+        weapon.setMaxAmmo(weaponSpecAPI.getMaxAmmo() == Integer.MAX_VALUE ? null : weaponSpecAPI.getMaxAmmo());
+        float ammoPerSec = weaponSpecAPI.getAmmoPerSecond();
+        int reloadSize = weaponSpecAPI.getReloadSize() >= 1 ? Math.round(weaponSpecAPI.getReloadSize()) : 1;
+        weapon.setReloadTime(ammoPerSec == 0 ? null : Math.round(reloadSize / ammoPerSec));
+        weapon.setReloadSize(reloadSize);
         weapon.setReFireDelay(fakeWeapon.getRefireDelay());
 
         weapon.setTags(weaponSpecAPI.getTags());
