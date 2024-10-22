@@ -22,6 +22,34 @@ public class ShipSystemConverter {
         shipSystem.setDescription(description.getText1());
         shipSystem.setShortDescription(description.getText3());
         shipSystem.setIcon(shipSystemSpecAPI.getIconSpriteName());
+
+        shipSystem.setFluxPerSecond(shipSystemSpecAPI.getFluxPerSecond());
+        shipSystem.setFluxPerSecondBaseRate(shipSystemSpecAPI.getFluxPerSecondBaseRate());
+        shipSystem.setFluxPerSecondBaseCap(shipSystemSpecAPI.getFluxPerSecondBaseCap());
+        shipSystem.setFluxPerUse(shipSystemSpecAPI.getFluxPerUse());
+        shipSystem.setFluxPerUseBaseRate(shipSystemSpecAPI.getFluxPerUseBaseRate());
+        shipSystem.setFluxPerUseBaseCap(shipSystemSpecAPI.getFluxPerUseBaseCap());
+        shipSystem.setCrPerUse(shipSystemSpecAPI.getCrPerUse());
+        shipSystem.setMaxUses(shipSystemSpecAPI.getMaxUses(null));//混淆里面的代码可以直接送Null
+        shipSystem.setRegen(shipSystemSpecAPI.getRegen(null));
+        shipSystem.setChargeUp(shipSystemSpecAPI.getIn());//实际是in
+        shipSystem.setActive(shipSystemSpecAPI.getActive());
+        shipSystem.setDown(shipSystemSpecAPI.getOut());//和Out
+        shipSystem.setCooldown(shipSystemSpecAPI.getCooldown(null));
+        shipSystem.setToggle(shipSystemSpecAPI.isToggle());
+        shipSystem.setNoDissipation(!shipSystemSpecAPI.isDissipationAllowed());//看是不是和文件是反的 用no更简单
+        shipSystem.setNoHardDissipation(!shipSystemSpecAPI.isHardDissipationAllowed());
+        shipSystem.setHardFlux(shipSystemSpecAPI.generatesHardFlux());
+        shipSystem.setNoFiring(!shipSystemSpecAPI.isFiringAllowed());
+        shipSystem.setNoTurning(!shipSystemSpecAPI.isTurningAllowed());
+        shipSystem.setNoStrafing(!shipSystemSpecAPI.isStrafeAllowed());
+        shipSystem.setNoAccel(!shipSystemSpecAPI.isAccelerateAllowed());
+        shipSystem.setNoShield(!shipSystemSpecAPI.isShieldAllowed());
+        shipSystem.setNoVent(!shipSystemSpecAPI.isVentingAllowed());
+        shipSystem.setPhaseCloak(shipSystemSpecAPI.isPhaseCloak());
+        shipSystem.setTags(shipSystemSpecAPI.getTags());
+
+
         return shipSystem;
     }
 }
