@@ -10,6 +10,7 @@ import exporter.model.MutableStat;
 import exporter.model.Ship;
 import exporter.model.WeaponSlot;
 import org.apache.log4j.Logger;
+import org.lwjgl.util.vector.Vector2f;
 
 import java.util.*;
 
@@ -68,6 +69,8 @@ public class ShipConverter {
         }
         ship.setDescription(stringBuilder.toString());
         ship.setSprite(hullApi.getSpriteName());
+        ship.setCenter(new Vector2f(shipAPI.getSpriteAPI().getCenterX(), shipAPI.getSpriteAPI().getCenterY()));
+        ship.setModuleAnchor(hullApi.getModuleAnchor());
 
         ship.setHullId(hullApi.getHullId());
         ship.setBaseHullId(hullApi.getBaseHullId());
