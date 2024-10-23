@@ -1,5 +1,7 @@
 package exporter.model;
 
+import org.lwjgl.util.vector.Vector2f;
+
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -17,6 +19,8 @@ public class Ship {
 
     private String hullId;
     private String baseHullId;
+    private Vector2f center;
+    private Vector2f moduleAnchor;
 
     //    作战后消耗的战备值(CR)
     private double crToDeploy;
@@ -200,6 +204,22 @@ public class Ship {
 
     public void setBaseHullId(String baseHullId) {
         this.baseHullId = baseHullId;
+    }
+
+    public Vector2f getCenter() {
+        return center;
+    }
+
+    public void setCenter(Vector2f center) {
+        this.center = center;
+    }
+
+    public Vector2f getModuleAnchor() {
+        return moduleAnchor;
+    }
+
+    public void setModuleAnchor(Vector2f moduleAnchor) {
+        this.moduleAnchor = moduleAnchor;
     }
 
     public String getSize() {
