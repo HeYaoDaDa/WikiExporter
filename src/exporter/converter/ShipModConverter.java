@@ -26,6 +26,7 @@ public class ShipModConverter {
         shipMod.setJsonType("SHIP_MOD");
         shipMod.setName(hullModSpecAPI.getDisplayName());
         shipMod.setIcon(hullModSpecAPI.getSpriteName());
+        shipMod.setManufacturer(hullModSpecAPI.getManufacturer());
 
         shipMod.setHaveSModEffect(effect.isSModEffectAPenalty());
         shipMod.setAlwaysUnlocked(hullModSpecAPI.isAlwaysUnlocked());
