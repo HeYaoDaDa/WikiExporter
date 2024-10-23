@@ -8,6 +8,7 @@ public class ShipMod {
     private String name;
     private String description;
     private String icon;
+    private String manufacturer;
 
     private boolean haveSModEffect;
     private boolean alwaysUnlocked;
@@ -32,6 +33,14 @@ public class ShipMod {
     private Set<String> tags;
     private Set<String> uiTags;
 
+
+    public String getManufacturer() {
+        return manufacturer;
+    }
+
+    public void setManufacturer(String manufacturer) {
+        this.manufacturer = manufacturer;
+    }
 
     public boolean isHaveSModEffect() {
         return haveSModEffect;
