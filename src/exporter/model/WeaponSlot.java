@@ -11,8 +11,11 @@ public class WeaponSlot {
     private double angle;
 
     private boolean weaponSlot;
+    private boolean decorative;
     private boolean hidden;
     private boolean builtIn;
+    private boolean turret;
+    private boolean hardPoint;
 
     public WeaponSlot(WeaponSlotAPI api) {
         this.id = api.getId();
@@ -22,8 +25,11 @@ public class WeaponSlot {
         this.angle = api.getAngle();
 
         this.weaponSlot = api.isWeaponSlot();
+        this.decorative = api.isDecorative();
         this.hidden = api.isHidden();
         this.builtIn = api.isBuiltIn();
+        this.turret = api.isTurret();
+        this.hardPoint = api.isHardpoint();
     }
 
     public String getId() {
@@ -74,6 +80,14 @@ public class WeaponSlot {
         this.weaponSlot = weaponSlot;
     }
 
+    public boolean isDecorative() {
+        return decorative;
+    }
+
+    public void setDecorative(boolean decorative) {
+        this.decorative = decorative;
+    }
+
     public boolean isHidden() {
         return hidden;
     }
@@ -88,5 +102,21 @@ public class WeaponSlot {
 
     public void setBuiltIn(boolean builtIn) {
         this.builtIn = builtIn;
+    }
+
+    public boolean isTurret() {
+        return turret;
+    }
+
+    public void setTurret(boolean turret) {
+        this.turret = turret;
+    }
+
+    public boolean isHardPoint() {
+        return hardPoint;
+    }
+
+    public void setHardPoint(boolean hardPoint) {
+        this.hardPoint = hardPoint;
     }
 }
