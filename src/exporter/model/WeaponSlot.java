@@ -21,7 +21,7 @@ public class WeaponSlot {
         this.id = api.getId();
         this.slotSize = api.getSlotSize().name();
         this.weaponType = api.getWeaponType().name();
-        this.location = api.getLocation();
+        this.location = new Vector2f(-1 * api.getLocation().y, 1 * api.getLocation().x);
         this.angle = api.getAngle();
 
         this.weaponSlot = api.isWeaponSlot();
