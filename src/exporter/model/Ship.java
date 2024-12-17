@@ -1,5 +1,6 @@
 package exporter.model;
 
+import exporter.converter.ShipCenter;
 import org.lwjgl.util.vector.Vector2f;
 
 import java.util.List;
@@ -19,7 +20,7 @@ public class Ship {
 
     private String hullId;
     private String baseHullId;
-    private Vector2f center;
+    private ShipCenter center;
     private Vector2f moduleAnchor;
 
     //    作战后消耗的战备值(CR)
@@ -206,11 +207,11 @@ public class Ship {
         this.baseHullId = baseHullId;
     }
 
-    public Vector2f getCenter() {
+    public ShipCenter getCenter() {
         return center;
     }
 
-    public void setCenter(Vector2f center) {
+    public void setCenter(ShipCenter center) {
         this.center = center;
     }
 

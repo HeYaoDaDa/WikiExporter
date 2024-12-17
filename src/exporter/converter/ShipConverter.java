@@ -69,8 +69,13 @@ public class ShipConverter {
         }
         ship.setDescription(stringBuilder.toString());
         ship.setSprite(hullApi.getSpriteName());
-        ship.setCenter(new Vector2f(shipAPI.getSpriteAPI().getCenterX(), shipAPI.getSpriteAPI().getCenterY()));
-        ship.setModuleAnchor(hullApi.getModuleAnchor());
+        ship.setCenter(new ShipCenter(shipAPI.getSpriteAPI().getCenterX(), shipAPI.getSpriteAPI().getCenterY()));
+        if ("station1".equals(hullApi.getHullId())) {
+            ship.setCenter(new ShipCenter(220, 220));
+        }
+        if (hullApi.getModuleAnchor() != null) {
+            ship.setModuleAnchor(new Vector2f(1 * hullApi.getModuleAnchor().y, 1 * hullApi.getModuleAnchor().x));
+        }
 
         ship.setHullId(hullApi.getHullId());
         ship.setBaseHullId(hullApi.getBaseHullId());
