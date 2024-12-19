@@ -8,6 +8,7 @@ import com.fs.starfarer.api.loading.Description;
 import com.fs.starfarer.api.loading.WeaponSlotAPI;
 import exporter.model.MutableStat;
 import exporter.model.Ship;
+import exporter.model.ShipCenter;
 import exporter.model.WeaponSlot;
 import org.apache.log4j.Logger;
 import org.lwjgl.util.vector.Vector2f;
@@ -18,10 +19,6 @@ public class ShipConverter {
     private static final Logger logger = Global.getLogger(ShipConverter.class);
 
     public Ship convert(ShipHullSpecAPI hullApi, ShipVariantAPI variantAPI) {
-        if (hullApi.isDHull()) {
-            return null;
-        }
-
         SettingsAPI settings = Global.getSettings();
         CombatEngineAPI combatEngine = Global.getCombatEngine();
 
