@@ -83,6 +83,14 @@ public class WikiExporterModPlugin extends BaseModPlugin {
             throw new RuntimeException(e);
         }
 
+        SpecialItemConverter specialItemConverter = new SpecialItemConverter();
+        for (SpecialItemSpecAPI specialItemSpecAPI : settings.getAllSpecialItemSpecs()) {
+            SpecialItem specialItem = specialItemConverter.convert(specialItemSpecAPI);
+            if (specialItem != null) {
+                dataJSONArray.put(new JSONObject(specialItem));
+            }
+        }
+
         CommodityConverter commodityConverter = new CommodityConverter();
         for (CommoditySpecAPI commoditySpecAPI : settings.getAllCommoditySpecs()) {
             Commodity commodity = commodityConverter.convert(commoditySpecAPI);
