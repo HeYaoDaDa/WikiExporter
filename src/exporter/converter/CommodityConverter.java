@@ -21,7 +21,6 @@ public class CommodityConverter {
         if (description.hasText1()) {
             commodity.setDescription(description.getText1());
         }
-        commodity.setOrigin(commoditySpecAPI.getOrigin());
         commodity.setIconName(commoditySpecAPI.getIconName());
 
         commodity.setStackSize(commoditySpecAPI.getStackSize());

@@ -32,7 +32,7 @@ public class PlanetType {
     private float shieldThickness2;
     private boolean doNotShowInCombat;
     private boolean gasGiant;
-
+    private String color;
     public String getName() {
         return name;
     }
@@ -279,5 +279,13 @@ public class PlanetType {
 
     public void setGasGiant(boolean gasGiant) {
         this.gasGiant = gasGiant;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
     }
 }

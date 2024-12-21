@@ -5,7 +5,6 @@ public class Commodity {
     private String jsonType;
     private String name;
     private String description;
-    private String origin;
     private String iconName;
     private int stackSize;
     private double order;
@@ -57,14 +56,6 @@ public class Commodity {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public String getOrigin() {
-        return origin;
-    }
-
-    public void setOrigin(String origin) {
-        this.origin = origin;
     }
 
     public String getIconName() {
