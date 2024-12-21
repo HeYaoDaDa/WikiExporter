@@ -3,6 +3,8 @@ package exporter.converter;
 import com.fs.starfarer.api.loading.IndustrySpecAPI;
 import exporter.model.Industry;
 
+import java.util.ArrayList;
+
 public class IndustryConverter {
     public Industry convert(IndustrySpecAPI industrySpecAPI) {
         Industry industry = new Industry();
@@ -10,7 +12,7 @@ public class IndustryConverter {
         industry.setId(industrySpecAPI.getId());
         industry.setJsonType("INDUSTRY");
         industry.setPluginClass(industrySpecAPI.getPluginClass());
-        industry.setTags(industrySpecAPI.getTags());
+        industry.setTags(new ArrayList<>(industrySpecAPI.getTags()));
         industry.setName(industrySpecAPI.getName());
         industry.setDesc(industrySpecAPI.getDesc());
         industry.setCost(industrySpecAPI.getCost());

@@ -9,10 +9,11 @@ import exporter.model.PlanetType;
 public class PlanetTypeConverter {
     public PlanetType convert(PlanetSpecAPI planetSpecAPI) {
         SettingsAPI settings = Global.getSettings();
-        Description description = settings.getDescription(planetSpecAPI.getDescriptionId(), Description.Type.RESOURCE);
+        Description description = settings.getDescription(planetSpecAPI.getDescriptionId(), Description.Type.PLANET);
 
         PlanetType planetType = new PlanetType();
 
+        planetType.setId(planetSpecAPI.getPlanetType());
         planetType.setName(planetSpecAPI.getName());
         planetType.setJsonType("PLANET_TYPE");
         planetType.setDescriptionId(planetSpecAPI.getDescriptionId());
@@ -25,7 +26,6 @@ public class PlanetTypeConverter {
         planetType.setRotation(planetSpecAPI.getRotation());
         planetType.setAtmosphereThickness(planetSpecAPI.getAtmosphereThickness());
         planetType.setStar(planetSpecAPI.isStar());
-        planetType.setPlanetType(planetSpecAPI.getPlanetType());
         planetType.setAtmosphereThicknessMin(planetSpecAPI.getAtmosphereThicknessMin());
         planetType.setCloudRotation(planetSpecAPI.getCloudRotation());
         planetType.setCoronaSize(planetSpecAPI.getCoronaSize());

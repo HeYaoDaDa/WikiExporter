@@ -1,6 +1,7 @@
 package exporter.model;
 
 public class PlanetType {
+    private String id;
     private String name;
     private String jsonType;
     private String descriptionId;
@@ -10,7 +11,6 @@ public class PlanetType {
     private float rotation;
     private float atmosphereThickness;
     private boolean star;
-    private String planetType;
     private float atmosphereThicknessMin;
     private float cloudRotation;
     private float coronaSize;
@@ -105,12 +105,12 @@ public class PlanetType {
         this.star = star;
     }
 
-    public String getPlanetType() {
-        return planetType;
+    public String getId() {
+        return id;
     }
 
-    public void setPlanetType(String planetType) {
-        this.planetType = planetType;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public float getAtmosphereThicknessMin() {

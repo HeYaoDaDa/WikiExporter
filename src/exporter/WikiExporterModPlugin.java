@@ -3,14 +3,15 @@ package exporter;
 import com.fs.starfarer.api.BaseModPlugin;
 import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.SettingsAPI;
-import com.fs.starfarer.api.campaign.FactionAPI;
-import com.fs.starfarer.api.campaign.PlanetSpecAPI;
-import com.fs.starfarer.api.campaign.RepLevel;
-import com.fs.starfarer.api.campaign.SectorAPI;
+import com.fs.starfarer.api.campaign.*;
 import com.fs.starfarer.api.campaign.econ.CommoditySpecAPI;
+import com.fs.starfarer.api.campaign.econ.SubmarketSpecAPI;
+import com.fs.starfarer.api.characters.MarketConditionSpecAPI;
+import com.fs.starfarer.api.characters.PersonAPI;
 import com.fs.starfarer.api.combat.ShipSystemSpecAPI;
 import com.fs.starfarer.api.combat.ShipVariantAPI;
 import com.fs.starfarer.api.combat.WeaponAPI;
+import com.fs.starfarer.api.impl.campaign.ids.Tags;
 import com.fs.starfarer.api.loading.HullModSpecAPI;
 import com.fs.starfarer.api.loading.IndustrySpecAPI;
 import com.fs.starfarer.api.loading.WeaponSpecAPI;
@@ -23,6 +24,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 public class WikiExporterModPlugin extends BaseModPlugin {
@@ -105,68 +107,81 @@ public class WikiExporterModPlugin extends BaseModPlugin {
             }
         }
 
+        MarketConditionConverter marketConditionConverter = new MarketConditionConverter();
+        for (MarketConditionSpecAPI marketConditionSpecAPI : settings.getAllMarketConditionSpecs()) {
+            MarketCondition marketCondition = marketConditionConverter.convert(marketConditionSpecAPI);
+            if (marketCondition != null) {
+                dataJSONArray.put(new JSONObject(marketCondition));
+            }
+        }
+
+        SubMarketConverter subMarketConverter = new SubMarketConverter();
+        for (SubmarketSpecAPI submarketSpecAPI : settings.getAllSubmarketSpecs()) {
+            SubMarket subMarket = subMarketConverter.convert(submarketSpecAPI);
+            if (subMarket != null) {
+                dataJSONArray.put(new JSONObject(subMarket));
+            }
+        }
+
+        SectorAPI sector = Global.getSector();
+
+        List<String> factionIds = new ArrayList<>();
+        for (FactionAPI factionAPI : sector.getAllFactions()) {
+            factionIds.add(factionAPI.getId());
+        }
+        FactionConverter factionConverter = new FactionConverter();
+        for (FactionAPI factionAPI : sector.getAllFactions()) {
+            Faction faction = factionConverter.convert(factionAPI, factionIds);
+            if (faction != null) {
+                dataJSONArray.put(new JSONObject(faction));
+            }
+        }
+
+        List<StarSystemAPI> starSystemApis = new ArrayList<>();
+        for (StarSystemAPI starSystemAPI : sector.getStarSystems()) {
+            if (starSystemAPI.hasTag(Tags.THEME_CORE)) {
+                starSystemApis.add(starSystemAPI);
+            }
+        }
+        HashSet<PlanetAPI> planetAPIS = new HashSet<>();
+        HashSet<PersonAPI> personAPIS = new HashSet<>();
+        for (StarSystemAPI starSystemApi : starSystemApis) {
+            planetAPIS.addAll(starSystemApi.getPlanets());
+        }
+        for (PlanetAPI planetAPI : planetAPIS) {
+            if (planetAPI.getMarket() != null) {
+                personAPIS.addAll(planetAPI.getMarket().getPeopleCopy());
+            }
+        }
+
+        StarSystemConverter starSystemConverter = new StarSystemConverter();
+        for (StarSystemAPI starSystemAPI : starSystemApis) {
+            StarSystem starSystem = starSystemConverter.convert(starSystemAPI);
+            if (starSystem != null) {
+                dataJSONArray.put(new JSONObject(starSystem));
+            }
+        }
+
+        PlanetConverter planetConverter = new PlanetConverter();
+        for (PlanetAPI planetAPI : planetAPIS) {
+            Planet planet = planetConverter.convert(planetAPI);
+            if (planet != null) {
+                dataJSONArray.put(new JSONObject(planet));
+            }
+        }
+
+        PersonConverter personConverter = new PersonConverter();
+        for (PersonAPI personAPI : personAPIS) {
+            Person person = personConverter.convert(personAPI);
+            if (person != null) {
+                dataJSONArray.put(new JSONObject(person));
+            }
+        }
+
         logger.info("export_data_export_" + dataJSONArray);
 
         logger.info("=================================");
         logger.info("===============End===============");
         logger.info("=================================");
-    }
-
-    @Override
-    public void onGameLoad(boolean newGame) {
-        super.onGameLoad(newGame);
-        logger.info("===== onGameLoad =====");
-        SectorAPI sectorApi = Global.getSector();
-
-//        List<StarSystemAPI> starSystems = sectorApi.getStarSystems();
-//        for (StarSystemAPI starSystem : starSystems) {
-//            if (starSystem.hasTag(Tags.THEME_CORE)) {
-//                logger.info("=====" + starSystem.getName() + "=====" + starSystem.getBaseName());
-//                List<PlanetAPI> planets = starSystem.getPlanets();
-//                for (PlanetAPI planet : planets) {
-//                    logger.info("\t\t" + planet.getName() + " | " + planet.getFullName());
-//                }
-//            }
-//        }
-
-        List<String> factionIds = new ArrayList<>();
-        for (FactionAPI factionAPI : sectorApi.getAllFactions()) {
-            factionIds.add(factionAPI.getId());
-        }
-        for (FactionAPI factionAPI : sectorApi.getAllFactions()) {
-            logger.info("=====" + factionAPI.getDisplayName() + "=====");
-            logger.info("	getId:" + factionAPI.getId());
-            logger.info("	getDisplayName:" + factionAPI.getDisplayName());
-            logger.info("	getDisplayNameLong:" + factionAPI.getDisplayNameLong());
-            logger.info("	getPersonNamePrefix:" + factionAPI.getPersonNamePrefix());
-            logger.info("	getShipNamePrefix:" + factionAPI.getShipNamePrefix());
-
-            logger.info("	getLogo:" + factionAPI.getLogo());
-            logger.info("	getCrest:" + factionAPI.getCrest());
-
-            logger.info("	getTariffFraction:" + factionAPI.getTariffFraction());
-            logger.info("	getTollFraction:" + factionAPI.getTollFraction());
-            logger.info("	getFineFraction:" + factionAPI.getFineFraction());
-
-            logger.info("	pickPersonality:" + factionAPI.pickPersonality());
-
-            logger.info("	isShowInIntelTab:" + factionAPI.isShowInIntelTab());
-            logger.info("	isNeutralFaction:" + factionAPI.isNeutralFaction());
-
-
-            StringBuilder illegalCommoditys = new StringBuilder();
-            for (String illegalCommodity : factionAPI.getIllegalCommodities()) {
-                illegalCommoditys.append(illegalCommodity).append(", ");
-            }
-            logger.info("	getIllegalCommodities:" + illegalCommoditys);
-
-            for (String factionId : factionIds) {
-                if (factionId.equals(factionAPI.getId())) {
-                    continue;
-                }
-                float relationship = factionAPI.getRelationship(factionId);
-                logger.info("       " + factionId + ":" + relationship + " - " + RepLevel.getLevelFor(relationship));
-            }
-        }
     }
 }

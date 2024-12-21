@@ -1,12 +1,12 @@
 package exporter.model;
 
-import java.util.Set;
+import java.util.List;
 
 public class Industry {
     private String id;
     private String jsonType;
     private String pluginClass;
-    private Set<String> tags;
+    private List<String> tags;
     private String name;
     private String desc;
     private float cost;
@@ -44,11 +44,11 @@ public class Industry {
         this.pluginClass = pluginClass;
     }
 
-    public Set<String> getTags() {
+    public List<String> getTags() {
         return tags;
     }
 
-    public void setTags(Set<String> tags) {
+    public void setTags(List<String> tags) {
         this.tags = tags;
     }
 
