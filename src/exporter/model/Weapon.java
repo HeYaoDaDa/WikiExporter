@@ -26,6 +26,7 @@ public class Weapon {
     private List<String> renderHints;
     //    导弹位置
     private List<Integer> turretOffsets;
+    private List<Integer> hardPointOffsets;
     private String projSpriteName;
 
     //    战术应用
@@ -197,6 +198,14 @@ public class Weapon {
 
     public void setTurretOffsets(List<Integer> turretOffsets) {
         this.turretOffsets = turretOffsets;
+    }
+
+    public List<Integer> getHardPointOffsets() {
+        return hardPointOffsets;
+    }
+
+    public void setHardPointOffsets(List<Integer> hardPointOffsets) {
+        this.hardPointOffsets = hardPointOffsets;
     }
 
     public String getProjSpriteName() {

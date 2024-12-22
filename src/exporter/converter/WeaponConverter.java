@@ -79,13 +79,21 @@ public class WeaponConverter {
         }
         weapon.setRenderHints(renderHints);
         List<Integer> offsets = new ArrayList<>();
-        if (jsonObject.has("hardpointOffsets")) {
-            JSONArray renderHintsArray = jsonObject.getJSONArray("hardpointOffsets");
+        if (jsonObject.has("turretOffsets")) {
+            JSONArray renderHintsArray = jsonObject.getJSONArray("turretOffsets");
             for (int i = 0; i < renderHintsArray.length(); i++) {
                 offsets.add(renderHintsArray.getInt(i));
             }
         }
         weapon.setTurretOffsets(offsets);
+        List<Integer> hardPointoffsets = new ArrayList<>();
+        if (jsonObject.has("hardpointOffsets")) {
+            JSONArray renderHintsArray = jsonObject.getJSONArray("hardpointOffsets");
+            for (int i = 0; i < renderHintsArray.length(); i++) {
+                hardPointoffsets.add(renderHintsArray.getInt(i));
+            }
+        }
+        weapon.setHardPointOffsets(hardPointoffsets);
         Object projectileSpec = weaponSpecAPI.getProjectileSpec();
         if (projectileSpec instanceof ProjectileSpecAPI) {
             ProjectileSpecAPI projectileSpecAPI = (ProjectileSpecAPI) projectileSpec;
