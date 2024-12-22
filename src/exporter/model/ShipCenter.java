@@ -1,4 +1,4 @@
-package exporter.converter;
+package exporter.model;
 
 public class ShipCenter {
     public float left;

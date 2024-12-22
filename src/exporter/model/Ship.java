@@ -1,6 +1,5 @@
 package exporter.model;
 
-import exporter.converter.ShipCenter;
 import org.lwjgl.util.vector.Vector2f;
 
 import java.util.List;
