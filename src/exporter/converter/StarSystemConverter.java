@@ -12,7 +12,7 @@ public class StarSystemConverter {
 
         starSystem.setId(starSystemAPI.getId());
         starSystem.setJsonType("START_SYSTEM");
-        starSystem.setName(starSystemAPI.getName());
+        starSystem.setName(starSystemAPI.getBaseName());
         starSystem.setLocation(starSystemAPI.getLocation());
         starSystem.setType(starSystemAPI.getType().name());
 
