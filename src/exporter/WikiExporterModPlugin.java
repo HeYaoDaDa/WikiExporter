@@ -152,13 +152,20 @@ public class WikiExporterModPlugin extends BaseModPlugin {
             }
         }
         HashSet<PlanetAPI> planetAPIS = new HashSet<>();
+        HashSet<SectorEntityToken> stations = new HashSet<>();
         HashSet<PersonAPI> personAPIS = new HashSet<>();
         for (StarSystemAPI starSystemApi : starSystemApis) {
             planetAPIS.addAll(starSystemApi.getPlanets());
+            stations.addAll(starSystemApi.getEntitiesWithTag(Tags.STATION));
         }
         for (PlanetAPI planetAPI : planetAPIS) {
             if (planetAPI.getMarket() != null) {
                 personAPIS.addAll(planetAPI.getMarket().getPeopleCopy());
+            }
+        }
+        for (SectorEntityToken sectorEntityToken : stations) {
+            if (sectorEntityToken.getMarket() != null) {
+                personAPIS.addAll(sectorEntityToken.getMarket().getPeopleCopy());
             }
         }
 
@@ -173,6 +180,12 @@ public class WikiExporterModPlugin extends BaseModPlugin {
         PlanetConverter planetConverter = new PlanetConverter();
         for (PlanetAPI planetAPI : planetAPIS) {
             Planet planet = planetConverter.convert(planetAPI);
+            if (planet != null) {
+                dataJSONArray.put(new JSONObject(planet));
+            }
+        }
+        for (SectorEntityToken sectorEntityToken : stations) {
+            Planet planet = planetConverter.convert(sectorEntityToken);
             if (planet != null) {
                 dataJSONArray.put(new JSONObject(planet));
             }
