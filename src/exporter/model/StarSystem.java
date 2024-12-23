@@ -19,6 +19,7 @@ public class StarSystem {
     private String tertiaryId;
 
     private boolean procgen;
+    private List<String> tags;
 
 
     public String getId() {
@@ -107,5 +108,13 @@ public class StarSystem {
 
     public void setProcgen(boolean procgen) {
         this.procgen = procgen;
+    }
+
+    public List<String> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<String> tags) {
+        this.tags = tags;
     }
 }
