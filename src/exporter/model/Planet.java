@@ -1,5 +1,7 @@
 package exporter.model;
 
+import org.lwjgl.util.vector.Vector2f;
+
 import java.util.List;
 
 public class Planet {
@@ -18,6 +20,8 @@ public class Planet {
     private String overrideDesc;
 
     private Market market;
+    private Vector2f location;
+    private Vector2f locationInHyperspace;
 
     public String getId() {
         return id;
@@ -113,5 +117,21 @@ public class Planet {
 
     public void setMarket(Market market) {
         this.market = market;
+    }
+
+    public Vector2f getLocation() {
+        return location;
+    }
+
+    public void setLocation(Vector2f location) {
+        this.location = location;
+    }
+
+    public Vector2f getLocationInHyperspace() {
+        return locationInHyperspace;
+    }
+
+    public void setLocationInHyperspace(Vector2f locationInHyperspace) {
+        this.locationInHyperspace = locationInHyperspace;
     }
 }

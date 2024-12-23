@@ -11,7 +11,7 @@ public class StarSystemConverter {
         StarSystem starSystem = new StarSystem();
 
         starSystem.setId(starSystemAPI.getId());
-        starSystem.setJsonType("START_SYSTEM");
+        starSystem.setJsonType("STAR_SYSTEM");
         starSystem.setName(starSystemAPI.getBaseName());
         starSystem.setLocation(starSystemAPI.getLocation());
         starSystem.setType(starSystemAPI.getType().name());
@@ -34,6 +34,7 @@ public class StarSystemConverter {
         }
 
         starSystem.setProcgen(starSystemAPI.isProcgen());
+        starSystem.setTags(new ArrayList<>(starSystemAPI.getTags()));
 
         return starSystem;
     }

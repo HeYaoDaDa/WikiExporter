@@ -80,6 +80,9 @@ public class PlanetConverter {
             planet.setMarket(new Market(sectorEntityToken.getMarket()));
         }
 
+        planet.setLocation(sectorEntityToken.getLocation());
+        planet.setLocationInHyperspace(sectorEntityToken.getLocationInHyperspace());
+
         return planet;
     }
 }
