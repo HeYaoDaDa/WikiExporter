@@ -16,6 +16,7 @@ public class Ship {
     private String designation;
     private String description;
     private String sprite;
+    private String manufacturer;
 
     private String hullId;
     private String baseHullId;
@@ -118,6 +119,7 @@ public class Ship {
     private boolean station;
     private boolean civilian;
     private boolean combat;
+    private boolean DHull;
     //    自动分
     private int fleetPoints;
     //    基础价值
@@ -188,6 +190,14 @@ public class Ship {
 
     public void setSprite(String sprite) {
         this.sprite = sprite;
+    }
+
+    public String getManufacturer() {
+        return manufacturer;
+    }
+
+    public void setManufacturer(String manufacturer) {
+        this.manufacturer = manufacturer;
     }
 
     public String getHullId() {
@@ -572,6 +582,14 @@ public class Ship {
 
     public void setCombat(boolean combat) {
         this.combat = combat;
+    }
+
+    public boolean isDHull() {
+        return DHull;
+    }
+
+    public void setDHull(boolean DHull) {
+        this.DHull = DHull;
     }
 
     public int getFleetPoints() {

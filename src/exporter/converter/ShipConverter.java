@@ -66,6 +66,7 @@ public class ShipConverter {
         }
         ship.setDescription(stringBuilder.toString());
         ship.setSprite(hullApi.getSpriteName());
+        ship.setManufacturer(hullApi.getManufacturer());
         ship.setCenter(new ShipCenter(shipAPI.getSpriteAPI().getCenterX(), shipAPI.getSpriteAPI().getCenterY()));
         if ("station1".equals(hullApi.getHullId())) {
             ship.setCenter(new ShipCenter(220, 220));
@@ -166,6 +167,7 @@ public class ShipConverter {
         ship.setStation(variantAPI.isStation());
         ship.setCivilian(variantAPI.isCivilian());
         ship.setCombat(variantAPI.isCombat());
+        ship.setDHull(variantAPI.isDHull());
         ship.setFleetPoints(hullApi.getFleetPoints());
         ship.setBaseValue(hullApi.getBaseValue());
 
