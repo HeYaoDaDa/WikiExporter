@@ -11,6 +11,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static exporter.utils.CommonUtils.convertToHex;
+
 public class FactionConverter {
     public Faction convert(FactionAPI factionAPI, List<String> allFactionIds) {
         SettingsAPI settings = Global.getSettings();
@@ -73,6 +75,7 @@ public class FactionConverter {
         faction.setPlayerFaction(factionAPI.isPlayerFaction());
         faction.setShowInIntelTab(factionAPI.isShowInIntelTab());
         faction.setNeutralFaction(factionAPI.isNeutralFaction());
+        faction.setColor(convertToHex(factionAPI.getColor()));
 
         return faction;
     }

@@ -25,6 +25,9 @@ public class Person {
     private double importance;
     private double contactWeight;
     private List<String> tags;
+    private String marketId;
+    private boolean aiCore;
+    private boolean defaults;
 
     public String getId() {
         return id;
@@ -152,5 +155,29 @@ public class Person {
 
     public void setTags(List<String> tags) {
         this.tags = tags;
+    }
+
+    public String getMarketId() {
+        return marketId;
+    }
+
+    public void setMarketId(String marketId) {
+        this.marketId = marketId;
+    }
+
+    public boolean isAiCore() {
+        return aiCore;
+    }
+
+    public void setAiCore(boolean aiCore) {
+        this.aiCore = aiCore;
+    }
+
+    public boolean isDefaults() {
+        return defaults;
+    }
+
+    public void setDefaults(boolean defaults) {
+        this.defaults = defaults;
     }
 }

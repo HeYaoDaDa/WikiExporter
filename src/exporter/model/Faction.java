@@ -47,6 +47,8 @@ public class Faction {
     private boolean showInIntelTab;
     private boolean neutralFaction;
 
+    private String color;
+
     public String getId() {
         return id;
     }
@@ -293,5 +295,13 @@ public class Faction {
 
     public void setNeutralFaction(boolean neutralFaction) {
         this.neutralFaction = neutralFaction;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
     }
 }

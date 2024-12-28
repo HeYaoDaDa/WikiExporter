@@ -32,6 +32,10 @@ public class PersonConverter {
         person.setContactWeight(personAPI.getContactWeight());
         person.setTags(new ArrayList<>(personAPI.getTags()));
 
+        person.setMarketId(personAPI.getMarket().getId());
+        person.setAiCore(personAPI.isAICore());
+        person.setDefaults(personAPI.isDefault());
+
         return person;
     }
 }
