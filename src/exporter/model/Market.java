@@ -31,6 +31,7 @@ public class Market {
     private boolean hidden;
 
     private List<String> tags;
+    private boolean planetConditionMarketOnly;
 
     public Market(MarketAPI api) {
         this.id = api.getId();
@@ -65,6 +66,7 @@ public class Market {
 
         this.hidden = api.isHidden();
         this.tags = new ArrayList<>(api.getTags());
+        this.planetConditionMarketOnly = api.isPlanetConditionMarketOnly();
     }
 
     public String getId() {
@@ -185,5 +187,13 @@ public class Market {
 
     public void setTags(List<String> tags) {
         this.tags = tags;
+    }
+
+    public boolean isPlanetConditionMarketOnly() {
+        return planetConditionMarketOnly;
+    }
+
+    public void setPlanetConditionMarketOnly(boolean planetConditionMarketOnly) {
+        this.planetConditionMarketOnly = planetConditionMarketOnly;
     }
 }
